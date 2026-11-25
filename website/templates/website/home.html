@@ -1,0 +1,18 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="container section ride-layout">
+    <form method="get" class="ride-box">
+        <h1>Get a ride</h1>
+        <label for="pickup">Pickup location</label>
+        <input type="text" id="pickup" name="pickup" placeholder="Enter pickup location" required>
+        <label for="drop">Dropoff location</label>
+        <input type="text" id="drop" name="drop" placeholder="Enter destination" required>
+        <button type="submit" class="btn">Search</button>
+    </form>
+    <img src="{% static 'website/images/map.jpg' %}" alt="Map of Delhi NCR" class="map">
+</section>
+{% endblock %}

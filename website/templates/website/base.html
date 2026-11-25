@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RideNow{% endblock %} | RideNow</title>
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a href="{% url 'home' %}" class="logo">RideNow</a>
+        <nav class="nav">
+            <a href="{% url 'home' %}">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>
+                <p class="logo">RideNow</p>
+                <p>Safe, affordable rides at the tap of a button. A student project inspired by ride-hailing apps.</p>
+            </div>
+            <div class="footer-links">
+                <a href="{% url 'home' %}">Home</a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 RideNow. Django class project.</p>
+    </footer>
+</body>
+</html>
