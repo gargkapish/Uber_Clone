@@ -1,0 +1,31 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}{{ ride.name }}{% endblock %}
+
+{% block content %}
+<section class="container section">
+    <p><a href="{% url 'rides' %}">&larr; Back to all rides</a></p>
+    <div class="detail">
+        <img src="{% static ride.image %}" alt="{{ ride.name }} ride">
+        <div>
+            <h1>RideNow {{ ride.name }}</h1>
+            <p class="tagline">{{ ride.tagline }}</p>
+            <p>{{ ride.description }}</p>
+            <ul class="facts">
+                <li><strong>Seats:</strong> {{ ride.seats }}</li>
+                <li><strong>Fare:</strong> &#8377;{{ ride.price_per_km }} per km</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="container section">
+    <h2>Other rides</h2>
+    <div class="card-grid">
+        {% for ride in others %}
+            {% include "website/ride_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

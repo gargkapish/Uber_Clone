@@ -1,0 +1,15 @@
+{% extends "website/base.html" %}
+
+{% block title %}Rides{% endblock %}
+
+{% block content %}
+<section class="container section">
+    <h1>Choose a ride</h1>
+    <p>Every ride type RideNow offers. Click one to see details.</p>
+    <div class="card-grid">
+        {% for ride in rides %}
+            {% include "website/ride_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% load static %}
+<a href="{% url 'ride_detail' ride.slug %}" class="card">
+    <img src="{% static ride.image %}" alt="{{ ride.name }} ride">
+    <div class="card-body">
+        <h3>{{ ride.name }}</h3>
+        <p>{{ ride.tagline }}</p>
+        <p class="meta">{{ ride.seats }} seat{{ ride.seats|pluralize }} &middot; &#8377;{{ ride.price_per_km }}/km</p>
+    </div>
+</a>
