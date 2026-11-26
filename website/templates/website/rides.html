@@ -5,7 +5,11 @@
 {% block content %}
 <section class="container section">
     <h1>Choose a ride</h1>
-    <p>Every ride type RideNow offers. Click one to see details.</p>
+    {% if pickup and drop %}
+        <p class="trip">Trip: <strong>{{ pickup }}</strong> &rarr; <strong>{{ drop }}</strong></p>
+    {% else %}
+        <p>Every ride type RideNow offers. Click one to see details.</p>
+    {% endif %}
     <div class="card-grid">
         {% for ride in rides %}
             {% include "website/ride_card.html" %}

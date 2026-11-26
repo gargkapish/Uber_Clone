@@ -29,7 +29,12 @@ def home(request):
 
 
 def rides(request):
-    return render(request, 'website/rides.html', {'rides': RIDES})
+    context = {
+        'rides': RIDES,
+        'pickup': request.GET.get('pickup', '').strip(),
+        'drop': request.GET.get('drop', '').strip(),
+    }
+    return render(request, 'website/rides.html', context)
 
 
 def ride_detail(request, slug):
