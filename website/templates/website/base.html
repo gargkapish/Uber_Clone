@@ -14,8 +14,16 @@
             <a href="{% url 'home' %}">Home</a>
             <a href="{% url 'rides' %}">Rides</a>
             <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'login' %}">Log in</a>
-            <a href="{% url 'signup' %}" class="btn btn-light">Sign up</a>
+            {% if user.is_authenticated %}
+                <span class="nav-user">Hi, {{ user.first_name|default:user.username }}</span>
+                <form action="{% url 'logout' %}" method="post" class="inline-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-light">Log out</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Log in</a>
+                <a href="{% url 'signup' %}" class="btn btn-light">Sign up</a>
+            {% endif %}
         </nav>
     </header>
 

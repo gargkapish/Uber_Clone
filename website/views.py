@@ -1,8 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404
 from django.shortcuts import redirect, render
+from django.views.decorators.http import require_POST
 
 from .forms import SignUpForm
 
@@ -77,3 +78,10 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'website/login.html', {'form': form})
+
+
+@require_POST
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('home')
