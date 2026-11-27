@@ -1,5 +1,10 @@
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
+from .forms import SignUpForm
 
 
 # Ride types are fixed, so a plain list is enough (no database model needed).
@@ -45,3 +50,30 @@ def ride_detail(request, slug):
 
 def about(request):
     return render(request, 'website/about.html')
+
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, f'Welcome to RideNow, {user.first_name}! Your account was created.')
+            return redirect('home')
+        messages.error(request, 'Please fix the errors below.')
+    else:
+        form = SignUpForm()
+    return render(request, 'website/signup.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            messages.success(request, 'Logged in successfully.')
+            return redirect('home')
+        messages.error(request, 'Invalid username or password.')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'website/login.html', {'form': form})
