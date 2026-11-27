@@ -1,0 +1,22 @@
+{% extends "website/base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="container section narrow">
+    <h1>About RideNow</h1>
+    <p>RideNow is a simple ride-booking website built with Django as a class project. It is inspired by ride-hailing apps but is not connected to any real company.</p>
+    <p>Our goal is to make getting around easy: pick a ride type, see the price, and book in a few clicks.</p>
+
+    <h2>Why ride with us</h2>
+    <ul class="facts">
+        <li>Rides for every budget, from bikes to SUVs</li>
+        <li>Clear per-km pricing with no hidden charges</li>
+        <li>Verified drivers and safe trips</li>
+    </ul>
+    <p><a href="{% url 'rides' %}" class="btn">Browse rides</a></p>
+
+    <h2 id="contact">Contact</h2>
+    <p>Email: support@ridenow.example<br>Phone: +91 00000 00000</p>
+</section>
+{% endblock %}

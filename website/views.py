@@ -41,3 +41,7 @@ def ride_detail(request, slug):
     ride = get_ride(slug)
     others = [r for r in RIDES if r['slug'] != slug]
     return render(request, 'website/ride_detail.html', {'ride': ride, 'others': others})
+
+
+def about(request):
+    return render(request, 'website/about.html')
